@@ -19,7 +19,7 @@ router.get('/:id', (req, res) => {
   Category.findByPk(req.params.id,{
     include: [{ model: Product}],
   })
-    then.((cat) => {
+    then((cat) => {
       if (!cat) {
       res.status(404).json({ message: 'Category not found with this Id' });
         return;
@@ -30,15 +30,37 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new category
-  
+    Category.create(req.body)
+      .then((cat) => res.status(200).json(cat))
+      .catch((err) => res.status(400).json(err));
 });
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
+    Category.update(req.body, {
+      where: {id: req.params.id },
+      })
+        .then((cat) => {
+          if (!cat) {
+            res.status(400).json({ message: 'Category not found with this Id' });
+          }
+            res.json({ message: 'Category Updated' });
+        })
+            .catch((err) => res.status(500).json(err));
 });
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
+    Category.delete(req.body, {
+      where: {id: req.params.id },
+      })
+        .then((cat) => {
+          if (!cat) {
+            res.status(400).json({ message: 'Category not found with this Id' });
+          }
+            res.json({ message: 'Category Deleted' });
+        })
+            .catch((err) => res.status(500).json(err));
 });
 
 module.exports = router;
