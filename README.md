@@ -27,8 +27,7 @@ The application does not requires installation
 
 ## Link to Video
 
-https://drive.google.com/file/d/1oGBnKLzCZHGgHFWtY5xeH2iDzOvMTmrX/viewLinks to an external site.
-
+https://drive.google.com/file/d/1oGBnKLzCZHGgHFWtY5xeH2iDzOvMTmrX
 
 ## License
 Please refer to the license details. MIT.
