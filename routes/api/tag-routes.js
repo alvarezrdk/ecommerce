@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
     Tag.findByPk(req.params.id,{
       include: [{ model: Product}],
     })
-      then((tag) => {
+      .then((tag) => {
         if (!tag) {
         res.status(404).json({ message: 'Tag not found with this Id' });
           return;
@@ -57,7 +57,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete on tag by its `id` value
-  Tag.delete(req.body, {
+  Tag.destroy({
     where: {id: req.params.id },
     })
       .then((tag) => {

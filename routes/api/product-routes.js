@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
   Product.findByPk(req.params.id,{
     include: [{ model: Category, Tag}],
   })
-    then((product) => {
+    .then((product) => {
       if (!product) {
       res.status(404).json({ message: 'Product not found with this Id' });
         return;
@@ -106,8 +106,8 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
-  Product.delete(req.body, {
-    where: {id: req.params.is },
+  Product.destroy({
+    where: {id: req.params.id },
     })
       .then((product) => {
         if (!product) {
